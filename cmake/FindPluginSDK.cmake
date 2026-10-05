@@ -164,9 +164,11 @@ foreach(comp_name ${PluginSDK_FIND_COMPONENTS})
       set(${component}_INCLUDE_DIRS
         "${${component}_INCLUDE_DIR}"
         "${${component}_INCLUDE_DIR}/${${component}_GAME_INCDIR_NAME}"
-        "${${component}_INCLUDE_DIR}/${${component}_GAME_INCDIR_NAME}/enums"
         "${PluginSDK_ROOT_DIR}/${${component}_INCDIR_NAME}/${${component}_GAME_INCDIR_NAME}/rw"
       )
+      if(EXISTS "${${component}_INCLUDE_DIR}/${${component}_GAME_INCDIR_NAME}/enums")
+        list(APPEND ${component}_INCLUDE_DIRS "${${component}_INCLUDE_DIR}/${${component}_GAME_INCDIR_NAME}/enums")
+      endif()
     endif()
 
     find_library(${component}_LIBRARY_RELEASE
